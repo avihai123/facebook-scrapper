@@ -1,6 +1,5 @@
 from models import upsert, graph, pages
 import facebook
-import sys
 
 ERROR_MSG = 'Not a page'
 SUCCESS_ADD_MSG = "Output: OK, added id #{id} with {fan_count} fans."
@@ -18,5 +17,3 @@ def add_page(arg):
         exit()
     upsert(pages, new_page)
     print(SUCCESS_ADD_MSG.format(**new_page))
-
-add_page(sys.argv[1])
