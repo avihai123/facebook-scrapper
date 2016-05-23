@@ -25,4 +25,8 @@ def show_posts_from_date(year, month, day):
                     post_list=posts_from_date(date))
 
 
-run(reloader=True, debug=True)
+def run_server(ip='127.0.0.1', port=8000):
+    run(host=ip, port=port, reloader=True, debug=True)
+
+if __name__ == '__main__':
+    run_server()
