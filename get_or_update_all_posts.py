@@ -24,5 +24,5 @@ def update_posts_per_page():
         print("Inserted {} posts, update {} posts.".format(inserted_posts, modified_posts))
     print("Done")
 
-
-update_posts_per_page()
+if __name__ == '__main__':
+    update_posts_per_page()
