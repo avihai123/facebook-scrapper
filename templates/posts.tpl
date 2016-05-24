@@ -16,7 +16,6 @@
                 <p><strong>Message</strong></p>
                 <p> {{post['message']}}</p>
                 <p>Total shares <span class="badge">{{post['shares']}}</span></p>
-
                 <p><i class="glyphicon glyphicon-time"></i> Last modified <span class="badge">{{post['updated_time']}}</span>
                 </p>
             </li>

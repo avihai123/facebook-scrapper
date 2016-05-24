@@ -1,7 +1,10 @@
 import datetime
 import pymongo
 
+# TODO refractor code
+# TODO create unit testing for all funcions, without testing templates.
 from models import posts, pages
+
 
 
 def get_recent_posts(limit=50):
