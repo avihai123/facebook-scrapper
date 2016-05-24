@@ -16,8 +16,8 @@ parser = argparse.ArgumentParser()
 subparsers = parser.add_subparsers()
 
 # create the parser for the "add" command
-parser_add_page = subparsers.add_parser('add a page')
-parser_add_page.add_argument('link', help="facebook url/name/ID")
+parser_add_page = subparsers.add_parser('add', help="add a page")
+parser_add_page.add_argument('page', help="facebook url/name/ID")
 parser_add_page.set_defaults(func=add_page)
 
 # create the parser for the "list" command
@@ -38,15 +38,14 @@ parser_serve.set_defaults(func=run_server)
 
 
 # create the parser for the "remove" command
-parser_remove_page = subparsers.add_parser('remove a page')
-parser_remove_page.add_argument('link', help="facebook url/name/ID")
-parser_remove_page.set_defaults(func=add_page)
+# parser_remove_page = subparsers.add_parser('remove a page')
+# parser_remove_page.add_argument('link', help="facebook url/name/ID")
+# parser_remove_page.set_defaults(func=remove_page)
+
 # # parse the args and call whatever function was selected
 # args = parser.parse_args()
 # args.func(args)
 #
 # # parse the args and call whatever function was selected
-# args = parser.parse_args()
-# args.func(args)
-
-print(parser.parse_args())
+args = parser.parse_args()
+args.func(args)
