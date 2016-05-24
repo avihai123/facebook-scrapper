@@ -5,7 +5,7 @@ import dateutil.parser
 def update_posts_per_page():
     for page in pages.find():
         print('Updating page "{}"'.format(page['name']))
-        page_posts = graph.get_object('/{}/posts/?fields=shares, message,updated_time&limit=100'.format(page['id']))
+        page_posts = graph.get_object('/{}/posts/?fields=shares, message,updated_time&limit=80'.format(page['id']))
         page_posts = page_posts['data']
         result_list = []
         for post in page_posts:

@@ -2,7 +2,7 @@ from models import pages
 
 
 def get_page_list():
-    return pages.find()
+    return [p for p in pages.find()]
 
 
 def print_page_list():
