@@ -13,14 +13,14 @@ def index():
 
 @route('/<page_id>/')
 def show_posts(page_id):
-    return template('templates/posts', title='Posts', page_list=get_page_list(),
-                    post_list=get_posts_ordered_by_popularity(page_id), page_id=page_id)
+    return template('templates/posts', title='Posts', page_list=get_page_list(), post_list=get_posts_ordered_by_popularity(page_id), page_id=page_id)
+                    # post_list=get_posts_ordered_by_popularity(page_id), page_id=page_id)
 
 
 # TODO fix latest template, broken
 @route('/latest/')
 def show_recent_posts():
-    return template('templates/posts', title='Recent Posts', page_list=get_page_list(), post_list=get_recent_posts())
+    return template('templates/posts', title='Recent Posts', page_list=get_page_list(), post_list=get_recent_posts(), page_id='test')
 
 
 @route('/<year:int>/<month:int>/<day:int>/')

@@ -48,10 +48,12 @@ def async_posts_update(page, post_limit):
 
 # TODO remove fields from code, put the in dict or list.
 # TODO add twitter api
+
 def update_posts_per_page(post_limit=100):
     with futures.ThreadPoolExecutor(max_workers=10) as executor:
         for page in pages.find():
             executor.submit(async_posts_update, page, post_limit)
+
     print("Done")
 
 

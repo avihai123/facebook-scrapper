@@ -1,12 +1,12 @@
 % rebase('templates/base.tpl', title=title)
-% if page_id != '':
-    % for post in post_list:
-        % page_name = ''
-        % for page in page_list:
-            % if page_id == page['id']:
-                % page_name = page['name']
-        % end
+
+% for post in post_list:
+    % page_name = ''
+    % for page in page_list:
+        % if page_id == page['id']:
+            % page_name = page['name']
     % end
+% end
 <h1>{{page_name}} {{title}}</h1>
 <ul class="list-group">
     % for post in post_list:

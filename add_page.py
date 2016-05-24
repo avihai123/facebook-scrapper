@@ -26,4 +26,9 @@ def remove_page(page_id):
     print("Removed")
 
 if __name__ == '__main__':
-    add_page(sys.argv[1])
+    if sys.argv[1] == 'add':
+        add_page(sys.argv[2])
+    if sys.argv[1] == 'remove':
+        add_page(sys.argv[2])
+
+
