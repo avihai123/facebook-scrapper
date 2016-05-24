@@ -82,5 +82,6 @@
     <div class="container-fluid">
         {{!base}}
     </div>
+    <h3>Built By: <a href="https://github.com/Alonski/facebook-scrapper">Alon Bukai</a> and <a href="https://github.com/avihai123/facebook-scrapper">Avihai Yosef</a></h3>
 </body>
 </html>
