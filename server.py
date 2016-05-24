@@ -2,7 +2,7 @@ from bottle import route, run, template
 from show_pages import get_page_list
 from show_posts import *
 
-
+# TODO implement search in data base
 # TODO rearrange project
 # TODO add comments and rename functions and variables.
 @route('/')
@@ -30,8 +30,8 @@ def show_posts_from_date(year, month, day):
                     post_list=posts_from_date(date))
 
 
-def run_server(interface='127.0.0.1', port=8000):
-    run(host=interface, port=port, reloader=True, debug=True)
+def run_server(interface='127.0.0.1', port=8000, debug=False, reloader=False):
+    run(host=interface, port=port, reloader=reloader, debug=debug)
 
 
 if __name__ == '__main__':

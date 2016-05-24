@@ -7,7 +7,7 @@ from show_pages import print_page_list
 
 
 parser = argparse.ArgumentParser()
-subparsers = parser.add_subparsers()
+subparsers = parser.add_subparsers(help='choose blabla')
 
 # create the parser for the "add" command
 parser_add_page = subparsers.add_parser('add', help="add a page")
@@ -27,7 +27,9 @@ parser_update.set_defaults(func=lambda args: update_posts_per_page(args.posts))
 parser_serve = subparsers.add_parser('serve', help="start a web server to access collected data")
 parser_serve.add_argument('--port', type=int, default=8000, help="server port")
 parser_serve.add_argument('--interface', default='127.0.0.1', help="server ip")
-parser_serve.set_defaults(func=lambda args: run_server(args.interface, args.port))
+parser_serve.add_argument('--debug', default=False, help="enable debugger")
+parser_serve.add_argument('--reloader', default=False, help="enable auto reload")
+parser_serve.set_defaults(func=lambda args: run_server(args.interface, args.port, args.debug, args.reloader))
 
 
 #create the parser for the "remove" command
