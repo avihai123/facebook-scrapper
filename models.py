@@ -17,4 +17,4 @@ posts.create_index('id', unique=True)
 def upsert(collection, item):
     return collection.update({'id': item['id']}, item, upsert=True)
 
-
+# TODO add more advanced/complex querys and aggregators.

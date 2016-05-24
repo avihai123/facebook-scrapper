@@ -1,21 +1,40 @@
 from models import pages, posts, graph, upsert
 import dateutil.parser
+import requests
 
-GRAPH_FACEBOOK_POSTS_API = '/{}/posts/?fields=shares, message,updated_time&limit={}'
-def update_posts_per_pages(pages_list, post_limit=100):
-    for page in pages_list:
+GRAPH_FACEBOOK_POSTS_API = '/{}/posts/?fields=shares, message,likes.limit(1).summary(True), updated_time&limit={}'
+POSTS_LIMIT_REQUEST = 50
+
+
+# TODO remove fields from code, put the in dict or list.
+# TODO add twitter api
+def update_posts_per_page(post_limit=100):
+    for page in pages.find():
         print('Updating page "{}"'.format(page['name']))
-        page_posts = graph.get_object(GRAPH_FACEBOOK_POSTS_API.format(page['id'], post_limit))['data']
-        #page_posts = page_posts['data']
 
-        # updating posts
+        page_data = []
+        page_posts = graph.get_object(GRAPH_FACEBOOK_POSTS_API.format(page['id'], POSTS_LIMIT_REQUEST))
+        page_data.extend(page_posts['data'])
+        for i in range(post_limit // POSTS_LIMIT_REQUEST):
+
+            if 'next' not in page_posts['paging']:
+                break
+
+            page_posts = requests.get(page_posts['paging']['next']).json()
+            page_data.extend(page_posts['data'])
+            # updating posts
         result_list = []
-        for post in page_posts:
+        for i, post in enumerate(page_data):
+            if i == post_limit:
+                break
+
             # convert time to datetime, add reference to page_id
             post['updated_time'] = dateutil.parser.parse(post['updated_time'])
             post['page_id'] = page['id']
             if 'shares' in post.keys():
                 post['shares'] = int(post['shares']['count'])
+            if 'likes' in post.keys():
+                post['likes'] = int(post['likes']['summary']['total_count'])
             # add posts and print DB status
             result = upsert(posts, post)
             result_list.append(result)
@@ -27,6 +46,5 @@ def update_posts_per_pages(pages_list, post_limit=100):
     print("Done")
 
 
-def update_posts
 if __name__ == '__main__':
     update_posts_per_page()
