@@ -16,6 +16,9 @@ def async_posts_update(page, post_limit):
     page_data.extend(page_posts['data'])
     for i in range(post_limit // POSTS_LIMIT_REQUEST):
 
+        # no more posts to request
+        if 'paging' not in page_posts.keys():
+            break
         if 'next' not in page_posts['paging']:
             break
 
