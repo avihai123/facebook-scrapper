@@ -27,6 +27,5 @@ def update_posts_per_pages(pages_list, post_limit=100):
     print("Done")
 
 
-def update_posts
 if __name__ == '__main__':
     update_posts_per_page()
