@@ -5,7 +5,6 @@ import sys
 ERROR_MSG = 'Not a page'
 SUCCESS_ADD_MSG = "Output: OK, added id #{id} with {fan_count} fans."
 
-
 def add_page(arg):
     if '/' in arg:
         fb_url = arg.split('/')[-1]
