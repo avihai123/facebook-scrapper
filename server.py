@@ -5,7 +5,7 @@ from show_posts import *
 
 @route('/')
 def index():
-    return template('templates/pages', title='Facebook Pages', page_list=get_page_list(), post_dict=get_best_posts())
+    return template('templates/pages', title='Facebook Pages', page_list=get_page_list(), post_dict=get_best_posts_per_page())
 
 
 @route('/<page_id>/')
