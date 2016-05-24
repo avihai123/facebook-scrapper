@@ -8,7 +8,7 @@ POSTS_LIMIT_REQUEST = 50
 
 # TODO remove fields from code, put the in dict or list.
 # TODO add twitter api
-def update_posts_per_page(post_limit=100):
+def update_posts_per_page(post_limit=50):
     for page in pages.find():
         print('Updating page "{}"'.format(page['name']))
 
