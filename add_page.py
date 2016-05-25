@@ -8,7 +8,6 @@ FIELDS = ('about', 'fan_count', 'name', 'cover')
 FIELDS_FORMAT = '?fields={},{},{},{}'.format(*FIELDS)
 REQUEST_FORMAT = '/{}/{}'
 
-# TODO save all fields in tuple
 # TODO let other function to select fields to request
 def add_page(arg):
     """

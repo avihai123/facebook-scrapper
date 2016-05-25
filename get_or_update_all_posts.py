@@ -1,5 +1,4 @@
 from concurrent import futures
-from pprint import pprint
 
 from models import pages, posts, graph, upsert
 import dateutil.parser
@@ -47,17 +46,17 @@ def async_posts_update(page, post_limit):
         if 'likes' in post.keys():
             post['likes'] = int(post['likes']['summary']['total_count'])
         post['comments'] = int(post['comments']['summary']['total_count'])
-
         # add posts and print DB status
         result = upsert(posts, post)
+        #print(result.modified_count)
         result_list.append(result)
 
 
     # counting changes in db for each page
-    modified_posts = sum(r['nModified'] for r in result_list)
-    inserted_posts = sum(not r['updatedExisting'] for r in result_list)
+    modified_posts = sum(r.modified_count for r in result_list)
+    inserted_posts = post_limit - modified_posts
     print("Inserted {} posts, update {} posts.".format(inserted_posts, modified_posts))
-# TODO remove fields from code, put the in dict or list.
+
 # TODO add twitter api
 
 def update_posts_per_page(post_limit=100):

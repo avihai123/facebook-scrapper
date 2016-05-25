@@ -1,5 +1,6 @@
 import facebook
 import pymongo
+import sys
 
 API_KEY = '1598480263776324|IdYDQgU-bNut44sZi564EZGkTHk'
 graph = facebook.GraphAPI(access_token=API_KEY, version='2.5')
@@ -15,7 +16,12 @@ posts.create_index('id', unique=True)
 
 posts.create_index([('message', 'text')])
 
+
 def upsert(collection, item):
-    return collection.update({'id': item['id']}, item, upsert=True)
+    return collection.update_one(
+        {'id': item['id']},
+        {'$set' : item },
+        upsert=True
+    )
 
 # TODO add more advanced/complex querys and aggregators.
