@@ -1,17 +1,16 @@
 import datetime
+from pprint import pprint
+
 import pymongo
 
-# TODO refractor code
-# TODO create unit testing for all funcions, without testing templates.
-# TODO show cover picture, i added it to DB
-# TODO i added to mongo more info about posts, like total comments, and so on.
+
 from models import posts, pages
 
 
 
 def get_recent_posts(limit=50):
-    # return [p for p in posts.find().sort('updated_time', pymongo.DESCENDING).limit(50)]
-    return posts.find().sort('updated_time', pymongo.DESCENDING).limit(limit)
+    return [p for p in posts.find().sort('updated_time', pymongo.DESCENDING).limit(50)]
+    #return posts.find().sort('updated_time', pymongo.DESCENDING).limit(limit)
 
 
 def posts_from_date(date):
@@ -35,7 +34,16 @@ def get_best_posts_per_page(limit=3):
         pages_with_best_posts[page['id']] = get_posts_ordered_by_score(page['id'], limit)
     return pages_with_best_posts
 
+def search_text_in_db(s):
+    """
+    search text in db and return matched documents(posts)
+
+
+    :return: return list of posts that match the text query.
+    """
+    return [p for p in posts.find( { '$text' :{ '$search' :s } })]
+
 # pprint(get_best_posts())
-# pprint(get_recent_posts())
+#pprint(get_recent_posts())
 # pprint(posts_from_date(datetime.datetime(2016, 5, 22)))
 # pprint(get_posts_ordered_by_popularity(5550296508))

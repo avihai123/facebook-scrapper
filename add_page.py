@@ -5,10 +5,9 @@ import sys
 ERROR_MSG = 'Not a page'
 SUCCESS_ADD_MSG = "Output: OK, added id #{id} with {fan_count} fans."
 FIELDS = ('about', 'fan_count', 'name', 'cover')
-FIELDS_FORMAT = '?fields={},{},{},{}'.format(FIELDS)
+FIELDS_FORMAT = '?fields={},{},{},{}'.format(*FIELDS)
 REQUEST_FORMAT = '/{}/{}'
 
-# TODO save all fields in tuple
 # TODO let other function to select fields to request
 def add_page(arg):
     """
