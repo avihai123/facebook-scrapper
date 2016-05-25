@@ -13,6 +13,7 @@ pages.create_index('id', unique=True)
 posts = db.get_collection('posts')
 posts.create_index('id', unique=True)
 
+posts.create_index([('message', 'text')])
 
 def upsert(collection, item):
     return collection.update({'id': item['id']}, item, upsert=True)

@@ -1,3 +1,5 @@
+from pprint import pprint
+
 from models import pages
 
 
@@ -10,4 +12,5 @@ def print_page_list():
         print("ID - {id}, name - {name}, fans - {fan_count}".format(**p))
 
 if __name__ == '__main__':
-    print_page_list()
+    #print_page_list()
+    pprint(get_page_list())
