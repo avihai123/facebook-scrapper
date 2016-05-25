@@ -1,4 +1,4 @@
-# TODO more advanced templates engines? maybe jinja?
+<!-- # TODO more advanced templates engines? maybe jinja? -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,10 +8,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    % if title == "Facebook Pages":
-        % title = 'Home'
-    % end
-	<title>FSA {{title}}</title>
+    %# if title == "Facebook Pages":
+        %# title = 'Home'
+    %# end
+	<title>F-T-SA {{title}}</title>
 	<style>
 
 	</style>
@@ -28,7 +28,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="/">Facebook Social Agg</a>
+              <a class="navbar-brand" href="/">Facebook-Twitter Social Agg</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -82,5 +82,6 @@
     <div class="container-fluid">
         {{!base}}
     </div>
+    <h3>Built By: <a href="https://github.com/Alonski/facebook-scrapper">Alon Bukai</a> and <a href="https://github.com/avihai123/facebook-scrapper">Avihai Yosef</a></h3>
 </body>
 </html>
