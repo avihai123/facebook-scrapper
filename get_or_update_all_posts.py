@@ -46,6 +46,8 @@ def async_posts_update(page, post_limit):
             post['shares'] = 0
         if 'likes' in post.keys():
             post['likes'] = int(post['likes']['summary']['total_count'])
+        else:
+            post['likes'] = 0
         post['comments'] = int(post['comments']['summary']['total_count'])
         # add posts and print DB status
         result = upsert(posts, post)
@@ -60,7 +62,7 @@ def async_posts_update(page, post_limit):
 
 # TODO add twitter api
 
-def update_posts_per_page(post_limit=100):
+def update_posts_per_page(post_limit=300):
     with futures.ThreadPoolExecutor(max_workers=10) as executor:
         for page in pages.find():
             executor.submit(async_posts_update, page, post_limit)

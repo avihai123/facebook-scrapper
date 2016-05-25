@@ -37,7 +37,7 @@ def show_recent_posts():
 @route('/<year:int>/<month:int>/<day:int>/')
 def show_posts_from_date(year, month, day):
     date = datetime.datetime(year, month, day)
-    return template('templates/posts', title="Posts from {}.{}.{}".format(day, month, year), post_list=posts_from_date(date))
+    return template('templates/posts', title="Posts from {}.{}.{}".format(day, month, year), post_list=posts_from_date(date), page_list=get_page_list())
 
 
 def run_server(interface='127.0.0.1', port=8000, debug=False, reloader=False):
