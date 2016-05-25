@@ -4,7 +4,8 @@ from models import pages, posts, graph, upsert
 import dateutil.parser
 import requests
 
-REQUEST_POSTS_FORMAT = '/{}/posts/?fields=shares,type,picture,message,likes.limit(1).summary(True),comments.limit(1).summary(true),updated_time&limit={}'
+FIELDS_TO_UPDATE = 'shares,type,full_picture,picture,message,likes.limit(1).summary(True),comments.limit(1).summary(true),updated_time&limit='
+REQUEST_POSTS_FORMAT = '/{}/posts/?fields={}{}'
 POSTS_LIMIT_REQUEST = 40
 
 
@@ -12,7 +13,7 @@ def async_posts_update(page, post_limit):
     print('Updating page "{}"'.format(page['name']))
 
     page_data = []
-    page_posts = graph.get_object(REQUEST_POSTS_FORMAT.format(page['id'], POSTS_LIMIT_REQUEST))
+    page_posts = graph.get_object(REQUEST_POSTS_FORMAT.format(page['id'], FIELDS_TO_UPDATE, POSTS_LIMIT_REQUEST))
     page_data.extend(page_posts['data'])
 
     for i in range(post_limit // POSTS_LIMIT_REQUEST):
@@ -48,14 +49,14 @@ def async_posts_update(page, post_limit):
         post['comments'] = int(post['comments']['summary']['total_count'])
         # add posts and print DB status
         result = upsert(posts, post)
-        #print(result.modified_count)
+        # print(result.modified_count)
         result_list.append(result)
-
 
     # counting changes in db for each page
     modified_posts = sum(r.modified_count for r in result_list)
     inserted_posts = post_limit - modified_posts
     print("Inserted {} posts, update {} posts.".format(inserted_posts, modified_posts))
+
 
 # TODO add twitter api
 
