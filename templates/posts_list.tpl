@@ -1,5 +1,7 @@
 % if 'message' in post.keys() and 'shares' in post.keys():
     <li class="list-group-item">
+        %if 'name' in post.keys():
+        <h3><span class="label label-success">{{post['name']}}</span></h3>
         <p><strong>Post id - </strong>{{post['id']}}</p>
         <p><strong>Message</strong></p>
         <p> {{post['message']}}</p>

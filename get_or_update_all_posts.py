@@ -4,7 +4,7 @@ from models import pages, posts, graph, upsert
 import dateutil.parser
 import requests
 
-FIELDS_TO_UPDATE = 'shares,type,full_picture,picture,message,likes.limit(1).summary(True),comments.limit(1).summary(true),updated_time&limit='
+FIELDS_TO_UPDATE = 'shares,type,name,full_picture,picture,message,likes.limit(1).summary(True),comments.limit(1).summary(true),updated_time&limit='
 REQUEST_POSTS_FORMAT = '/{}/posts/?fields={}{}'
 POSTS_LIMIT_REQUEST = 40
 
