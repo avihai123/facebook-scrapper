@@ -3,6 +3,8 @@ import pymongo
 
 # TODO refractor code
 # TODO create unit testing for all funcions, without testing templates.
+# TODO show cover picture, i added it to DB
+# TODO i added to mongo more info about posts, like total comments, and so on.
 from models import posts, pages
 
 
