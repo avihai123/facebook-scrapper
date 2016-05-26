@@ -6,7 +6,7 @@
                 <a href="{{page['id']}}/">
                     <h4 class="list-group-item-heading">{{page['name']}}</h4>
                     <p class="list-group-item-text">{{page['about']}}</p>
-                    <p>Total fans - {{page['fan_count']}}</p>
+                    <p>fans - {{page['fan_count']}}</p>
                 </a>
                 <!-- List 3 best posts -->
                 <button class="btn btn-info" data-toggle="collapse" data-target="#{{page['id']}}">Best Posts</button>

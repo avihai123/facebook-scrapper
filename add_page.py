@@ -27,8 +27,7 @@ def add_page(arg):
         exit()
 
     # relpace cover with cover link
-    new_page['cover'] = new_page['cover']['source']
-
+    new_page['cover'] = new_page['cover']['source'] if 'cover' in new_page.keys() else 'default'
     # add field values to database
     upsert(pages, new_page)
     print(SUCCESS_ADD_MSG.format(**new_page))

@@ -1,18 +1,20 @@
 % rebase('templates/base.tpl', title=title)
-<ul class="list-group">
-    % for post in post_list:
-    % if 'message' in post.keys() and 'shares' in post.keys():
-    <li class="list-group-item">
-        <p><strong>Post id - </strong>{{post['id']}}</p>
-        <p><strong>Message</strong></p>
-        <p> {{post['message']}}</p>
-        <p>Total shares <span class="badge">{{post['shares']}}</span></p>
-        % if 'likes' in post.keys():
-        <p>Total likes <span class="badge">{{post['likes']}}</span></p>
-        % end
-        <p><i class="glyphicon glyphicon-time"></i> Last modified <span class="badge">{{post['updated_time']}}</span>
-        </p>
-    </li>
-    % end
-    % end
-</ul>
+
+<h1>{{title}}</h1>
+
+
+<div class="row">
+% for post in post_list:
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="{{post['picture']}}" alt="...">
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>{{post['message'] if 'message' in post.keys() else 'empty post'}}</p>
+        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+      </div>
+    </div>
+  </div>
+  % end
+</div>
+

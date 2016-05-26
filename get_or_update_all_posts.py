@@ -40,14 +40,8 @@ def async_posts_update(page, post_limit):
         post['page_id'] = page['id']
 
         # convert shares, likes, comments to total shares
-        if 'shares' in post.keys():
-            post['shares'] = int(post['shares']['count'])
-        else:
-            post['shares'] = 0
-        if 'likes' in post.keys():
-            post['likes'] = int(post['likes']['summary']['total_count'])
-        else:
-            post['likes'] = 0
+        post['shares'] = post['shares']['count'] if 'shares' in post.keys() else 0
+        post['likes'] = int(post['likes']['summary']['total_count']) if 'likes' in post.keys() else 0
         post['comments'] = int(post['comments']['summary']['total_count'])
         # add posts and print DB status
         result = upsert(posts, post)
