@@ -15,7 +15,6 @@ def index():
 def show_posts(page_id):
     return template('templates/posts', title='{} Posts'.format(get_page_name(page_id)), page_list=get_page_list(),
                     post_list=get_posts_ordered_by_popularity(page_id), page_id=page_id)
-    # post_list=get_posts_ordered_by_popularity(page_id), page_id=page_id)
 
 
 # @route('/<page_name>/')

@@ -1,5 +1,8 @@
 import datetime
+from pprint import pprint
+
 import pymongo
+from bson import SON
 
 from models import posts, pages
 
@@ -17,11 +20,11 @@ def posts_from_date(date):
 
 def get_posts_ordered_by_popularity(the_page_id):
     # return [p for p in posts.find().sort('shares', pymongo.DESCENDING)]
-    return posts.find({'page_id': the_page_id}).sort('shares', pymongo.DESCENDING)
+    return list(posts.find({'page_id': the_page_id}).sort('shares', pymongo.DESCENDING))
 
 
 def get_posts_ordered_by_score(the_page_id, limit=50):
-    return posts.find({'page_id': the_page_id}).sort('shares', pymongo.DESCENDING).limit(limit)
+    return list(posts.find({'page_id': the_page_id}).sort('shares', pymongo.DESCENDING).limit(limit))
 
 
 def get_best_posts_per_page(limit=3):
@@ -39,7 +42,22 @@ def search_text_in_db(s):
     """
     return [p for p in posts.find({'$text': {'$search': s}})]
 
+def aggregate_post_types():
+    """
+    counting the types of posts.
+
+
+    :return: list of dicts each one contain type name and counter
+    """
+    pipeline = [
+             {"$group": {"_id": "$type", "count": {"$sum": 1}}},
+             {"$sort": SON([("count", -1), ("_id", -1)])}
+            ]
+    return list(posts.aggregate(pipeline))
+
+
 # pprint(get_best_posts())
-# pprint(get_recent_posts())
+#pprint(get_recent_posts())
+#pprint(aggregate_post_types())
 # pprint(posts_from_date(datetime.datetime(2016, 5, 22)))
 # pprint(get_posts_ordered_by_popularity(5550296508))
