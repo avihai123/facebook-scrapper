@@ -5,12 +5,14 @@
       </a>
     </div>
     <div class="media-body">
+    <a href="https://www.facebook.com/{{post['id']}}/">
       <h4 class="media-heading">{{post['name'] if 'name' in post.keys() else 'Unnamed post' }}</h4>
       % if 'message' in post.keys():
       <p>{{post['message']}}</p>
       % end
       <p>{{post['shares']}} shares {{post['likes']}} likes {{post['comments']}} comments</p>
       <p><i class="glyphicon glyphicon-time"></i><span class="badge">{{post['updated_time']}}</span>
+    </a>
     </div>
 </li>
 

@@ -1,6 +1,4 @@
 import datetime
-from pprint import pprint
-
 import pymongo
 
 from models import posts, pages

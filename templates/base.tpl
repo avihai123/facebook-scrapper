@@ -1,4 +1,3 @@
-<!-- # TODO more advanced templates engines? maybe jinja? -->
 
 <!DOCTYPE html>
 <html lang="en">

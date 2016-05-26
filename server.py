@@ -3,15 +3,9 @@ from show_pages import get_page_list, get_page_name
 from show_posts import *
 
 
-# TODO make search text work for posts, i mad i function search_text_in_db. it need to redirect to posts pages. if you want i can do for pages too.
-# we need to send search query with get like @route('search/')
 # TODO rearrange project
 # TODO add comments and rename functions and variables.
-# TODO for each post put small picture(in post['picture'])
-# TODO convert id to link to post.
 # TODO each post now have link and type of link, (video,picture,link) maybe we can use it.
-# TODO show page cover picture(in page['picture'] for all pages
-# TODO posts got this fields now, we to use them (shares, likes, comments)
 @route('/')
 def index():
     return template('templates/pages', title='Home', page_list=get_page_list(), post_dict=get_best_posts_per_page())
