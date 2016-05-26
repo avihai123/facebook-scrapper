@@ -8,23 +8,20 @@ from models import posts, pages
 
 
 def get_recent_posts(limit=50):
-    return [p for p in posts.find().sort('updated_time', pymongo.DESCENDING).limit(50)]
-    # return posts.find().sort('updated_time', pymongo.DESCENDING).limit(limit)
+    return posts.find().sort('updated_time', pymongo.DESCENDING).limit(limit)
 
 
 def posts_from_date(date):
     d_end = date + datetime.timedelta(days=1)
-    # return [p for p in posts.find({'updated_time': {"$gt": date, "$lt": d_end}}).sort('shares', pymongo.DESCENDING)]
     return posts.find({'updated_time': {"$gt": date, "$lt": d_end}}).sort('shares', pymongo.DESCENDING)
 
 
 def get_posts_ordered_by_popularity(the_page_id):
-    # return [p for p in posts.find().sort('shares', pymongo.DESCENDING)]
-    return list(posts.find({'page_id': the_page_id}).sort('shares', pymongo.DESCENDING))
+    return posts.find({'page_id': the_page_id}).sort('shares', pymongo.DESCENDING)
 
 
 def get_posts_ordered_by_score(the_page_id, limit=50):
-    return list(posts.find({'page_id': the_page_id}).sort('shares', pymongo.DESCENDING).limit(limit))
+    return posts.find({'page_id': the_page_id}).sort('shares', pymongo.DESCENDING).limit(limit)
 
 
 def get_best_posts_per_page(limit=3):
@@ -40,7 +37,7 @@ def search_text_in_db(s):
 
     :return: return list of posts that match the text query.
     """
-    return [p for p in posts.find({'$text': {'$search': s}})]
+    return posts.find({'$text': {'$search': s}})
 
 def aggregate_post_types():
     """
@@ -53,7 +50,7 @@ def aggregate_post_types():
              {"$group": {"_id": "$type", "count": {"$sum": 1}}},
              {"$sort": SON([("count", -1), ("_id", -1)])}
             ]
-    return list(posts.aggregate(pipeline))
+    return posts.aggregate(pipeline)
 
 
 # pprint(get_best_posts())
